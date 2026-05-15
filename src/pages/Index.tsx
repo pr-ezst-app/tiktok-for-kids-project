@@ -5,44 +5,53 @@ import Icon from "@/components/ui/icon";
 const HERO_IMAGE = "https://cdn.ezst.app/projects/f6e6635d-5e07-48e0-9f32-b4f2b8ab4340/files/b8304a80-4fd2-4eaf-88b2-51fff29c402e.jpg";
 
 const LIVE_STREAMS = [
-  { id: 1, name: "StarKid_Pro", game: "Minecraft Adventures", viewers: "12.4K", avatar: "🦊", color: "#ff3cac", tag: "LIVE" },
-  { id: 2, name: "CosmicGamer", game: "Roblox Obby World", viewers: "8.9K", avatar: "🐱", color: "#00f5ff", tag: "LIVE" },
-  { id: 3, name: "NinjaPixel", game: "Fortnite Creative", viewers: "21K", avatar: "🐸", color: "#39ff14", tag: "LIVE" },
-  { id: 4, name: "ZapQueen", game: "Fall Guys Party", viewers: "5.2K", avatar: "🦋", color: "#ffe600", tag: "LIVE" },
+  { id: 1, name: "ChefKid_Mia", game: "Rainbow Cupcake Bake-Off 🧁", viewers: "18.2K", avatar: "👩‍🍳", color: "#ff6b35", tag: "LIVE" },
+  { id: 2, name: "StarKid_Pro", game: "Minecraft Speedrun 🎮", viewers: "12.4K", avatar: "🦊", color: "#ff3cac", tag: "LIVE" },
+  { id: 3, name: "ArtByLuna", game: "Painting Sunset Landscapes 🎨", viewers: "9.1K", avatar: "🦋", color: "#bf00ff", tag: "LIVE" },
+  { id: 4, name: "NinjaPixel", game: "Fortnite Creative ⚡", viewers: "21K", avatar: "🐸", color: "#39ff14", tag: "LIVE" },
+  { id: 5, name: "PuppyPaws", game: "Training My Dog Tricks 🐶", viewers: "6.8K", avatar: "🐾", color: "#ffe600", tag: "LIVE" },
 ];
 
 const VIDEOS = [
-  { id: 1, title: "Epic Minecraft Speedrun 🚀", creator: "StarKid_Pro", views: "2.1M", duration: "15:32", emoji: "⛏️", gradient: "from-pink-500 to-purple-600" },
-  { id: 2, title: "100 Players Obby Battle!", creator: "CosmicGamer", views: "980K", duration: "22:14", emoji: "🏃", gradient: "from-cyan-400 to-blue-600" },
-  { id: 3, title: "I Built a Rainbow City!", creator: "NinjaPixel", views: "1.5M", duration: "18:47", emoji: "🌈", gradient: "from-green-400 to-emerald-600" },
-  { id: 4, title: "Best Fortnite Skins Ever", creator: "ZapQueen", views: "750K", duration: "12:08", emoji: "🎮", gradient: "from-yellow-400 to-orange-500" },
-  { id: 5, title: "Taming ALL Animals!", creator: "PuffyBear", views: "3.2M", duration: "28:55", emoji: "🐾", gradient: "from-rose-400 to-pink-600" },
-  { id: 6, title: "Sky Islands Challenge", creator: "LunaPlay", views: "445K", duration: "10:21", emoji: "☁️", gradient: "from-violet-400 to-purple-600" },
+  { id: 1, title: "I Made Rainbow Sushi Rolls! 🌈", creator: "ChefKid_Mia", views: "3.4M", duration: "12:05", emoji: "🍣", gradient: "from-orange-400 to-pink-500", category: "cooking" },
+  { id: 2, title: "Epic Minecraft Speedrun 🚀", creator: "StarKid_Pro", views: "2.1M", duration: "15:32", emoji: "⛏️", gradient: "from-pink-500 to-purple-600", category: "gaming" },
+  { id: 3, title: "Painting a Galaxy in 5 Min ✨", creator: "ArtByLuna", views: "1.9M", duration: "8:47", emoji: "🎨", gradient: "from-violet-500 to-blue-600", category: "art" },
+  { id: 4, title: "My Puppy Learned 10 Tricks! 🐶", creator: "PuppyPaws", views: "4.1M", duration: "14:20", emoji: "🐕", gradient: "from-yellow-400 to-orange-500", category: "animals" },
+  { id: 5, title: "Easy Chocolate Lava Cake 🍫", creator: "ChefKid_Mia", views: "2.8M", duration: "10:15", emoji: "🍫", gradient: "from-amber-600 to-yellow-500", category: "cooking" },
+  { id: 6, title: "100 Players Obby Battle! 🏃", creator: "CosmicGamer", views: "980K", duration: "22:14", emoji: "🏃", gradient: "from-cyan-400 to-blue-600", category: "gaming" },
+  { id: 7, title: "DIY Slime Without Glue 🌀", creator: "CraftyZoe", views: "5.2M", duration: "7:30", emoji: "🌀", gradient: "from-green-400 to-teal-500", category: "diy" },
+  { id: 8, title: "Gymnastics Floor Routine 🤸", creator: "FlipGirl_Ava", views: "1.3M", duration: "6:44", emoji: "🤸", gradient: "from-rose-400 to-pink-600", category: "sports" },
 ];
 
 const DISCOVER_CATEGORIES = [
-  { emoji: "⚔️", label: "Action", color: "#ff3cac" },
-  { emoji: "🏗️", label: "Building", color: "#00f5ff" },
-  { emoji: "🏁", label: "Racing", color: "#ffe600" },
-  { emoji: "🧩", label: "Puzzle", color: "#39ff14" },
-  { emoji: "👻", label: "Spooky", color: "#bf00ff" },
-  { emoji: "🐾", label: "Animals", color: "#ff6b35" },
-  { emoji: "🌊", label: "Ocean", color: "#00bfff" },
-  { emoji: "🚀", label: "Space", color: "#ff3cac" },
+  { emoji: "🍳", label: "Cooking", color: "#ff6b35" },
+  { emoji: "🎮", label: "Gaming", color: "#ff3cac" },
+  { emoji: "🎨", label: "Art", color: "#bf00ff" },
+  { emoji: "🐾", label: "Animals", color: "#ffe600" },
+  { emoji: "🤸", label: "Sports", color: "#39ff14" },
+  { emoji: "🎵", label: "Music", color: "#00f5ff" },
+  { emoji: "🧪", label: "Science", color: "#ff6b35" },
+  { emoji: "🌿", label: "Nature", color: "#39ff14" },
+  { emoji: "🪄", label: "DIY", color: "#bf00ff" },
+  { emoji: "📚", label: "Learning", color: "#00f5ff" },
+  { emoji: "💃", label: "Dance", color: "#ff3cac" },
+  { emoji: "🚀", label: "Space", color: "#ffe600" },
 ];
 
 const CREATORS = [
-  { name: "StarKid_Pro", followers: "2.4M", emoji: "🦊", badge: "⭐", verified: true, color: "#ff3cac" },
-  { name: "CosmicGamer", followers: "1.8M", emoji: "🐱", badge: "🚀", verified: true, color: "#00f5ff" },
-  { name: "NinjaPixel", followers: "3.1M", emoji: "🐸", badge: "💎", verified: true, color: "#39ff14" },
-  { name: "ZapQueen", followers: "990K", emoji: "🦋", badge: "✨", verified: false, color: "#ffe600" },
+  { name: "ChefKid_Mia", followers: "3.4M", emoji: "👩‍🍳", badge: "🍳", verified: true, color: "#ff6b35", tag: "Cooking" },
+  { name: "StarKid_Pro", followers: "2.4M", emoji: "🦊", badge: "⭐", verified: true, color: "#ff3cac", tag: "Gaming" },
+  { name: "ArtByLuna", followers: "1.9M", emoji: "🦋", badge: "🎨", verified: true, color: "#bf00ff", tag: "Art" },
+  { name: "PuppyPaws", followers: "4.1M", emoji: "🐾", badge: "🐶", verified: true, color: "#ffe600", tag: "Animals" },
+  { name: "CraftyZoe", followers: "2.1M", emoji: "🌀", badge: "✂️", verified: false, color: "#39ff14", tag: "DIY" },
+  { name: "FlipGirl_Ava", followers: "1.3M", emoji: "🤸", badge: "🏅", verified: false, color: "#00f5ff", tag: "Sports" },
 ];
 
 const MESSAGES = [
-  { id: 1, name: "StarKid_Pro", msg: "Hey! Watch my new Minecraft video 🎮", time: "2m", emoji: "🦊", unread: 3, color: "#ff3cac" },
-  { id: 2, name: "CosmicGamer", msg: "That was so cool! Let's play together!", time: "15m", emoji: "🐱", unread: 1, color: "#00f5ff" },
-  { id: 3, name: "NinjaPixel", msg: "Going live in 10 minutes! 🔴", time: "32m", emoji: "🐸", unread: 0, color: "#39ff14" },
-  { id: 4, name: "PuffyBear", msg: "Thanks for the follow! 💜", time: "1h", emoji: "🐼", unread: 0, color: "#bf00ff" },
+  { id: 1, name: "ChefKid_Mia", msg: "Try my rainbow cupcake recipe! 🧁", time: "2m", emoji: "👩‍🍳", unread: 3, color: "#ff6b35" },
+  { id: 2, name: "StarKid_Pro", msg: "Let's do a Minecraft collab! 🎮", time: "15m", emoji: "🦊", unread: 1, color: "#ff3cac" },
+  { id: 3, name: "ArtByLuna", msg: "Going live with a painting in 10 min 🎨", time: "32m", emoji: "🦋", unread: 0, color: "#bf00ff" },
+  { id: 4, name: "PuppyPaws", msg: "My puppy learned a new trick! 🐶", time: "1h", emoji: "🐾", unread: 0, color: "#ffe600" },
 ];
 
 const SETTINGS_ITEMS = [
@@ -56,8 +65,8 @@ const SETTINGS_ITEMS = [
 
 type Tab = "home" | "discover" | "videos" | "messages" | "profile" | "settings" | "upload";
 
-const GAME_TAGS = ["Minecraft", "Roblox", "Fortnite", "Fall Guys", "Among Us", "Pokémon", "Other"];
-const EMOJI_PICKS = ["🎮", "⛏️", "🚀", "🌈", "🏆", "🐉", "✨", "🔥", "🎯", "🌊", "👾", "🦄"];
+const VIDEO_TAGS = ["Cooking", "Gaming", "Art", "Animals", "Sports", "Music", "DIY", "Science", "Dance", "Nature", "Other"];
+const EMOJI_PICKS = ["🍳", "🎮", "🎨", "🐶", "🤸", "🎵", "🌀", "🧪", "💃", "🌿", "🚀", "✨", "🍫", "🌈", "⛏️", "🦄"];
 
 export default function Index() {
   const navigate = useNavigate();
@@ -70,7 +79,7 @@ export default function Index() {
   const [uploadTitle, setUploadTitle] = useState("");
   const [uploadDesc, setUploadDesc] = useState("");
   const [uploadEmoji, setUploadEmoji] = useState("🎮");
-  const [uploadTag, setUploadTag] = useState("Minecraft");
+  const [uploadTag, setUploadTag] = useState("Cooking");
   const [published, setPublished] = useState(false);
   const [publishing, setPublishing] = useState(false);
 
@@ -173,8 +182,8 @@ export default function Index() {
                   <span className="animate-live-pulse w-2 h-2 rounded-full bg-white inline-block" />
                   LIVE NOW
                 </div>
-                <h2 className="font-fredoka text-3xl text-white leading-tight">Game Time<br />is Hero Time! 🚀</h2>
-                <p className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.7)" }}>Join 48K kids watching live</p>
+                <h2 className="font-fredoka text-3xl text-white leading-tight">Cook, Play,<br />Create & Explore! 🌟</h2>
+                <p className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.7)" }}>Join 84K kids watching live</p>
                 <button className="mt-3 px-5 py-2 rounded-2xl font-bold text-sm w-fit transition-transform active:scale-95"
                   style={{ background: "linear-gradient(135deg, #ff3cac, #bf00ff)", color: "#fff" }}>
                   Watch Now →
@@ -269,12 +278,12 @@ export default function Index() {
         {activeTab === "discover" && (
           <div className="px-4 mt-6 animate-fade-in">
             <h2 className="font-fredoka text-3xl text-white mb-1">Discover 🔭</h2>
-            <p className="text-sm mb-5" style={{ color: "rgba(255,255,255,0.5)" }}>Explore games & creators you'll love</p>
+            <p className="text-sm mb-5" style={{ color: "rgba(255,255,255,0.5)" }}>Explore videos & creators you'll love</p>
 
             <div className="flex items-center gap-3 px-4 py-3 rounded-2xl mb-6"
               style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)" }}>
               <Icon name="Search" size={18} style={{ color: "rgba(255,255,255,0.4)" }} />
-              <span className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>Search games, creators...</span>
+              <span className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>Search cooking, gaming, art...</span>
             </div>
 
             <h3 className="font-fredoka text-xl text-white mb-3">Categories</h3>
@@ -299,7 +308,10 @@ export default function Index() {
                     {c.emoji}
                   </div>
                   <div className="flex-1">
-                    <p className="font-bold text-white text-sm">{c.name}</p>
+                    <div className="flex items-center gap-2">
+                      <p className="font-bold text-white text-sm">{c.name}</p>
+                      <span className="px-1.5 py-0.5 rounded-full text-xs font-bold" style={{ background: `${c.color}30`, color: c.color }}>{c.tag}</span>
+                    </div>
                     <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{c.followers} followers</p>
                   </div>
                   <button
@@ -324,7 +336,7 @@ export default function Index() {
             <p className="text-sm mb-5" style={{ color: "rgba(255,255,255,0.5)" }}>Kid-safe videos just for you!</p>
 
             <div className="flex gap-2 overflow-x-auto pb-3 mb-5" style={{ scrollbarWidth: "none" }}>
-              {["All", "🔥 Trending", "⛏️ Minecraft", "🏃 Roblox", "🎮 Fortnite", "🌈 Creative"].map((filter, i) => (
+              {["All", "🍳 Cooking", "🎮 Gaming", "🎨 Art", "🐾 Animals", "🤸 Sports", "🌀 DIY", "🎵 Music"].map((filter, i) => (
                 <button key={i}
                   className="flex-shrink-0 px-4 py-1.5 rounded-full text-sm font-bold transition-all active:scale-95"
                   style={i === 0
@@ -595,7 +607,7 @@ export default function Index() {
                     type="text"
                     value={uploadTitle}
                     onChange={e => setUploadTitle(e.target.value)}
-                    placeholder="My awesome Minecraft adventure! 🚀"
+                    placeholder="My rainbow cupcake recipe 🧁, epic speedrun 🎮, cool painting 🎨..."
                     maxLength={60}
                     className="w-full px-4 py-3 rounded-2xl text-sm text-white outline-none transition-all"
                     style={{
@@ -627,9 +639,9 @@ export default function Index() {
 
                 {/* Game tag */}
                 <div className="mb-6">
-                  <p className="text-xs font-bold text-white mb-2 uppercase tracking-wider">Game Tag</p>
+                  <p className="text-xs font-bold text-white mb-2 uppercase tracking-wider">Category</p>
                   <div className="flex gap-2 flex-wrap">
-                    {GAME_TAGS.map(tag => (
+                    {VIDEO_TAGS.map(tag => (
                       <button key={tag}
                         onClick={() => setUploadTag(tag)}
                         className="px-3 py-1.5 rounded-full text-xs font-bold transition-all active:scale-95"
