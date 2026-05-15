@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 
 const HERO_IMAGE = "https://cdn.ezst.app/projects/f6e6635d-5e07-48e0-9f32-b4f2b8ab4340/files/b8304a80-4fd2-4eaf-88b2-51fff29c402e.jpg";
@@ -53,12 +54,31 @@ const SETTINGS_ITEMS = [
   { icon: "HelpCircle", label: "Help & Support", desc: "FAQs & contact", color: "#ff6b35" },
 ];
 
-type Tab = "home" | "discover" | "videos" | "messages" | "profile" | "settings";
+type Tab = "home" | "discover" | "videos" | "messages" | "profile" | "settings" | "upload";
+
+const GAME_TAGS = ["Minecraft", "Roblox", "Fortnite", "Fall Guys", "Among Us", "Pokémon", "Other"];
+const EMOJI_PICKS = ["🎮", "⛏️", "🚀", "🌈", "🏆", "🐉", "✨", "🔥", "🎯", "🌊", "👾", "🦄"];
 
 export default function Index() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<Tab>("home");
   const [liked, setLiked] = useState<Set<number>>(new Set());
   const [following, setFollowing] = useState<Set<number>>(new Set());
+  const [screenTimeLeft] = useState(87);
+  const [isPaused] = useState(false);
+
+  const [uploadTitle, setUploadTitle] = useState("");
+  const [uploadDesc, setUploadDesc] = useState("");
+  const [uploadEmoji, setUploadEmoji] = useState("🎮");
+  const [uploadTag, setUploadTag] = useState("Minecraft");
+  const [published, setPublished] = useState(false);
+  const [publishing, setPublishing] = useState(false);
+
+  const handlePublish = () => {
+    if (!uploadTitle.trim()) return;
+    setPublishing(true);
+    setTimeout(() => { setPublishing(false); setPublished(true); }, 1800);
+  };
 
   const toggleLike = (id: number) => {
     setLiked(prev => {
@@ -97,9 +117,16 @@ export default function Index() {
             Tik Kids
           </span>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <button className="relative p-2 rounded-xl" style={{ background: "rgba(255,255,255,0.08)" }}>
             <Icon name="Search" size={20} className="text-white" />
+          </button>
+          <button
+            onClick={() => navigate("/parent")}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold"
+            style={{ background: "rgba(255,255,255,0.12)", color: "#fff", border: "1px solid rgba(255,255,255,0.18)" }}>
+            <Icon name="Shield" size={13} className="text-white" />
+            Parents
           </button>
           <button className="relative p-2 rounded-xl" style={{ background: "rgba(255,255,255,0.08)" }}>
             <Icon name="Bell" size={20} className="text-white" />
@@ -115,6 +142,27 @@ export default function Index() {
         {/* ── HOME ── */}
         {activeTab === "home" && (
           <div className="animate-fade-in">
+            {/* Screen time ribbon */}
+            <div className="mx-4 mt-3 px-4 py-2 rounded-2xl flex items-center justify-between"
+              style={{ background: isPaused ? "rgba(255,60,172,0.15)" : "rgba(255,230,0,0.12)", border: `1px solid ${isPaused ? "rgba(255,60,172,0.4)" : "rgba(255,230,0,0.3)"}` }}>
+              {isPaused ? (
+                <>
+                  <div className="flex items-center gap-2">
+                    <Icon name="PauseCircle" size={15} style={{ color: "#ff3cac" }} />
+                    <span className="text-xs font-bold text-white">App paused by parent</span>
+                  </div>
+                  <span className="text-xs font-bold" style={{ color: "#ff3cac" }}>Take a break! 🌿</span>
+                </>
+              ) : (
+                <>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm">⏱️</span>
+                    <span className="text-xs font-bold text-white">Screen time left today</span>
+                  </div>
+                  <span className="font-fredoka text-sm" style={{ color: "#ffe600" }}>{screenTimeLeft} min</span>
+                </>
+              )}
+            </div>
             {/* Hero Banner */}
             <div className="relative mx-4 mt-4 rounded-3xl overflow-hidden">
               <img src={HERO_IMAGE} alt="Gaming Kids" className="w-full h-56 object-cover" />
@@ -457,20 +505,196 @@ export default function Index() {
             </p>
           </div>
         )}
+
+        {/* ── UPLOAD ── */}
+        {activeTab === "upload" && (
+          <div className="px-4 mt-6 animate-fade-in pb-4">
+            {published ? (
+              /* Success state */
+              <div className="flex flex-col items-center justify-center min-h-[60vh] text-center gap-4">
+                <div className="text-8xl animate-bounce-in">{uploadEmoji}</div>
+                <h2 className="font-fredoka text-3xl text-white">Video Published! 🎉</h2>
+                <p className="text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
+                  <span className="font-bold text-white">"{uploadTitle}"</span> is now live for everyone to see!
+                </p>
+                <div className="w-full p-4 rounded-2xl mt-2"
+                  style={{ background: "linear-gradient(135deg, rgba(57,255,20,0.15), rgba(0,245,255,0.1))", border: "1.5px solid rgba(57,255,20,0.3)" }}>
+                  <div className="flex items-center gap-3">
+                    <div className="w-14 h-14 rounded-xl flex items-center justify-center text-3xl"
+                      style={{ background: "rgba(255,255,255,0.1)" }}>{uploadEmoji}</div>
+                    <div className="text-left">
+                      <p className="font-bold text-white text-sm">{uploadTitle}</p>
+                      <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.5)" }}>
+                        UnicornGamer99 • {uploadTag} • Just now
+                      </p>
+                      <div className="flex items-center gap-1 mt-1">
+                        <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "#39ff14", color: "#000" }}>✓ LIVE</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  onClick={() => { setPublished(false); setUploadTitle(""); setUploadDesc(""); setUploadEmoji("🎮"); setUploadTag("Minecraft"); }}
+                  className="mt-2 px-6 py-3 rounded-2xl font-bold text-sm"
+                  style={{ background: "linear-gradient(135deg, #ff3cac, #bf00ff)", color: "#fff" }}>
+                  + Upload Another Video
+                </button>
+                <button onClick={() => setActiveTab("videos")} className="text-sm font-bold" style={{ color: "#00f5ff" }}>
+                  See all videos →
+                </button>
+              </div>
+            ) : (
+              /* Upload form */
+              <>
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center"
+                    style={{ background: "linear-gradient(135deg, #ff3cac, #bf00ff)" }}>
+                    <Icon name="Upload" size={18} className="text-white" />
+                  </div>
+                  <div>
+                    <h2 className="font-fredoka text-2xl text-white leading-none">Upload Video</h2>
+                    <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.5)" }}>Share your gaming moments! 🎮</p>
+                  </div>
+                </div>
+
+                {/* Video picker area */}
+                <div className="w-full h-44 rounded-3xl flex flex-col items-center justify-center gap-3 mb-5 cursor-pointer card-hover"
+                  style={{ background: "rgba(255,255,255,0.04)", border: "2px dashed rgba(255,60,172,0.4)" }}>
+                  <span className="text-5xl">{uploadEmoji}</span>
+                  <div className="text-center">
+                    <p className="font-bold text-white text-sm">Tap to pick your video</p>
+                    <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>MP4, MOV up to 500MB</p>
+                  </div>
+                  <div className="px-4 py-1.5 rounded-full text-xs font-bold"
+                    style={{ background: "linear-gradient(135deg, #ff3cac, #bf00ff)", color: "#fff" }}>
+                    Choose Video
+                  </div>
+                </div>
+
+                {/* Choose thumbnail emoji */}
+                <div className="mb-4">
+                  <p className="text-xs font-bold text-white mb-2 uppercase tracking-wider">Pick a thumbnail emoji</p>
+                  <div className="flex gap-2 flex-wrap">
+                    {EMOJI_PICKS.map(e => (
+                      <button key={e}
+                        onClick={() => setUploadEmoji(e)}
+                        className="w-10 h-10 rounded-xl text-xl flex items-center justify-center transition-all active:scale-95"
+                        style={uploadEmoji === e
+                          ? { background: "linear-gradient(135deg, #ff3cac, #bf00ff)", border: "2px solid #ff3cac" }
+                          : { background: "rgba(255,255,255,0.08)", border: "2px solid transparent" }}>
+                        {e}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Title */}
+                <div className="mb-4">
+                  <p className="text-xs font-bold text-white mb-2 uppercase tracking-wider">Video Title *</p>
+                  <input
+                    type="text"
+                    value={uploadTitle}
+                    onChange={e => setUploadTitle(e.target.value)}
+                    placeholder="My awesome Minecraft adventure! 🚀"
+                    maxLength={60}
+                    className="w-full px-4 py-3 rounded-2xl text-sm text-white outline-none transition-all"
+                    style={{
+                      background: "rgba(255,255,255,0.08)",
+                      border: uploadTitle ? "1.5px solid rgba(255,60,172,0.6)" : "1.5px solid rgba(255,255,255,0.12)",
+                      fontFamily: "Nunito, sans-serif"
+                    }}
+                  />
+                  <p className="text-xs mt-1 text-right" style={{ color: "rgba(255,255,255,0.3)" }}>{uploadTitle.length}/60</p>
+                </div>
+
+                {/* Description */}
+                <div className="mb-4">
+                  <p className="text-xs font-bold text-white mb-2 uppercase tracking-wider">Description</p>
+                  <textarea
+                    value={uploadDesc}
+                    onChange={e => setUploadDesc(e.target.value)}
+                    placeholder="Tell everyone what's in your video..."
+                    rows={3}
+                    maxLength={200}
+                    className="w-full px-4 py-3 rounded-2xl text-sm text-white outline-none resize-none transition-all"
+                    style={{
+                      background: "rgba(255,255,255,0.08)",
+                      border: "1.5px solid rgba(255,255,255,0.12)",
+                      fontFamily: "Nunito, sans-serif"
+                    }}
+                  />
+                </div>
+
+                {/* Game tag */}
+                <div className="mb-6">
+                  <p className="text-xs font-bold text-white mb-2 uppercase tracking-wider">Game Tag</p>
+                  <div className="flex gap-2 flex-wrap">
+                    {GAME_TAGS.map(tag => (
+                      <button key={tag}
+                        onClick={() => setUploadTag(tag)}
+                        className="px-3 py-1.5 rounded-full text-xs font-bold transition-all active:scale-95"
+                        style={uploadTag === tag
+                          ? { background: "linear-gradient(135deg, #00f5ff, #0080ff)", color: "#fff" }
+                          : { background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.6)", border: "1px solid rgba(255,255,255,0.15)" }}>
+                        {tag}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Safe content reminder */}
+                <div className="flex items-start gap-3 p-3 rounded-2xl mb-5"
+                  style={{ background: "rgba(57,255,20,0.08)", border: "1px solid rgba(57,255,20,0.2)" }}>
+                  <span className="text-lg">🛡️</span>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>
+                    Your video will be reviewed to make sure it's <span className="font-bold text-white">safe & friendly</span> before going live. Keep it fun and kind! 💚
+                  </p>
+                </div>
+
+                {/* Publish button */}
+                <button
+                  onClick={handlePublish}
+                  disabled={!uploadTitle.trim() || publishing}
+                  className="w-full py-4 rounded-2xl font-fredoka text-xl transition-all active:scale-95"
+                  style={uploadTitle.trim()
+                    ? { background: "linear-gradient(135deg, #ff3cac, #bf00ff, #00f5ff)", color: "#fff", backgroundSize: "200%", boxShadow: "0 8px 30px rgba(255,60,172,0.4)" }
+                    : { background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.3)" }}>
+                  {publishing ? "🚀 Publishing..." : "🚀 Publish Video!"}
+                </button>
+              </>
+            )}
+          </div>
+        )}
       </main>
 
       {/* BOTTOM NAV */}
       <nav className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-around px-2 py-3"
         style={{ background: "rgba(15,8,30,0.92)", backdropFilter: "blur(20px)", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
         {([
-          { id: "home", icon: "Home", label: "Home", emoji: "🏠" },
-          { id: "discover", icon: "Compass", label: "Discover", emoji: "🔭" },
-          { id: "videos", icon: "Play", label: "Videos", emoji: "🎬" },
-          { id: "messages", icon: "MessageCircle", label: "Chat", emoji: "💬" },
-          { id: "profile", icon: "User", label: "Me", emoji: "🦄" },
-          { id: "settings", icon: "Settings", label: "Settings", emoji: "⚙️" },
-        ] as { id: Tab; icon: string; label: string; emoji: string }[]).map(item => {
+          { id: "home", label: "Home", emoji: "🏠" },
+          { id: "discover", label: "Discover", emoji: "🔭" },
+          { id: "videos", label: "Videos", emoji: "🎬" },
+          { id: "upload", label: "Upload", emoji: "➕", special: true },
+          { id: "messages", label: "Chat", emoji: "💬" },
+          { id: "profile", label: "Me", emoji: "🦄" },
+        ] as { id: Tab; label: string; emoji: string; special?: boolean }[]).map(item => {
           const isActive = activeTab === item.id;
+          if (item.special) {
+            return (
+              <button key={item.id}
+                onClick={() => setActiveTab(item.id)}
+                className="flex flex-col items-center gap-0.5 -mt-4 transition-all active:scale-95 relative">
+                <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl"
+                  style={{ background: isActive ? "linear-gradient(135deg, #ff3cac, #bf00ff)" : "linear-gradient(135deg, rgba(255,60,172,0.7), rgba(191,0,255,0.7))", boxShadow: "0 4px 20px rgba(255,60,172,0.5)" }}>
+                  {item.emoji}
+                </div>
+                <span className="text-xs font-bold"
+                  style={{ color: isActive ? "#ff3cac" : "rgba(255,255,255,0.4)" }}>
+                  {item.label}
+                </span>
+              </button>
+            );
+          }
           return (
             <button key={item.id}
               onClick={() => setActiveTab(item.id)}
